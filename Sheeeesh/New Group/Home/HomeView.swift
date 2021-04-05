@@ -10,6 +10,7 @@ import Backend
 
 struct HomeView: View {
     @ObservedObject private var viewModel = HomeViewModel()
+    @StateObject var scrollToModel = ScrollToModel()
     @State private var selectedURLString = ""
     @State private var showSafariView = false
     @State private var paginationCount = -1
@@ -33,23 +34,41 @@ struct HomeView: View {
                                 Divider()
                             }
                         }
+                        .onReceive(scrollToModel.$direction) { action in
+                            guard !viewModel.memes.isEmpty else { return }
+                            withAnimation {
+                                switch action {
+                                case .top:
+                                    sp.scrollTo(viewModel.memes.first!, anchor: .top)
+                                case .end:
+                                    sp.scrollTo(viewModel.memes.last!, anchor: .bottom)
+                                default:
+                                    return
+                                }
+                            }
+                        }
                         
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                viewModel.fetch()
-                            }, label: {
-                                Text("Load More")
+                        VStack {
+                            HStack {
+                                Spacer()
+                                Button(action: {
+                                    viewModel.fetch()
+                                }, label: {
+                                    Text("Load More")
+                                })
+                                Spacer()
+                            }
+                            .padding()
+                            .onAppear(perform: {
+                                paginationCount += 1
+                                if paginationCount > 0 {
+                                    sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
+                                }
                             })
                             Spacer()
+                            EndView()
+                                .frame(width: .infinity, height: 750)
                         }
-                        .padding()
-                        .onAppear(perform: {
-                            paginationCount += 1
-                            if paginationCount > 0 {
-                                sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
-                            }
-                        })
                     }
                 }
                 .padding([.leading, .trailing])
@@ -57,6 +76,24 @@ struct HomeView: View {
                 .sheet(isPresented: $showSafariView, content: {
                     SafariView(urlString: self.$selectedURLString)
                 })
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Menu {
+                            Button(action: {
+                                scrollToModel.direction = .top
+                            }) {
+                                Label("To first post", systemImage: "chevron.up")
+                            }
+                            Button(action: {
+                                scrollToModel.direction = .end
+                            }) {
+                                Label("To last post", systemImage: "chevron.down")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                    }
+                }
             }
         }
     }

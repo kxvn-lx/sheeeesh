@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A417AA1261B315100DF8146 /* ScrollToModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA0261B315100DF8146 /* ScrollToModel.swift */; };
+		0A417AA4261B34B100DF8146 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA3261B34B100DF8146 /* EndView.swift */; };
 		0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */; };
 		0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6579261AE45200951091 /* SheeeeshApp.swift */; };
 		0ADD657E261AE45400951091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD657D261AE45400951091 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A417AA0261B315100DF8146 /* ScrollToModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToModel.swift; sourceTree = "<group>"; };
+		0A417AA3261B34B100DF8146 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		0ADD6576261AE45200951091 /* Sheeeesh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sheeeesh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADD6579261AE45200951091 /* SheeeeshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheeeeshApp.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				0ADD6592261AF44000951091 /* Home */,
+				0A417AA3261B34B100DF8146 /* EndView.swift */,
 			);
 			name = View;
 			path = "New Group";
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				0ADD6598261AF46500951091 /* HomeViewModel.swift */,
+				0A417AA0261B315100DF8146 /* ScrollToModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -222,8 +228,10 @@
 			files = (
 				0ADD6594261AF44F00951091 /* HomeView.swift in Sources */,
 				0ADD65AA261AFA5100951091 /* Color+.swift in Sources */,
+				0A417AA4261B34B100DF8146 /* EndView.swift in Sources */,
 				0ADD659C261AF4CC00951091 /* HomeRow.swift in Sources */,
 				0ADD6599261AF46500951091 /* HomeViewModel.swift in Sources */,
+				0A417AA1261B315100DF8146 /* ScrollToModel.swift in Sources */,
 				0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */,
 				0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */,
 			);
