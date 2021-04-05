@@ -3,23 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6579261AE45200951091 /* SheeeeshApp.swift */; };
-		0ADD657C261AE45200951091 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD657B261AE45200951091 /* ContentView.swift */; };
 		0ADD657E261AE45400951091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD657D261AE45400951091 /* Assets.xcassets */; };
 		0ADD6581261AE45400951091 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD6580261AE45400951091 /* Preview Assets.xcassets */; };
+		0ADD658D261AE7CD00951091 /* Backend in Frameworks */ = {isa = PBXBuildFile; productRef = 0ADD658C261AE7CD00951091 /* Backend */; };
+		0ADD6594261AF44F00951091 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6593261AF44F00951091 /* HomeView.swift */; };
+		0ADD6599261AF46500951091 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6598261AF46500951091 /* HomeViewModel.swift */; };
+		0ADD659C261AF4CC00951091 /* HomeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD659B261AF4CC00951091 /* HomeRow.swift */; };
+		0ADD65A0261AF5DB00951091 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0ADD659F261AF5DB00951091 /* SDWebImageSwiftUI */; };
+		0ADD65AA261AFA5100951091 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD65A9261AFA5100951091 /* Color+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0ADD6576261AE45200951091 /* Sheeeesh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sheeeesh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADD6579261AE45200951091 /* SheeeeshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheeeeshApp.swift; sourceTree = "<group>"; };
-		0ADD657B261AE45200951091 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0ADD657D261AE45400951091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0ADD6580261AE45400951091 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0ADD6582261AE45400951091 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ADD6589261AE4B700951091 /* Backend */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Backend; sourceTree = "<group>"; };
+		0ADD6593261AF44F00951091 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0ADD6598261AF46500951091 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		0ADD659B261AF4CC00951091 /* HomeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRow.swift; sourceTree = "<group>"; };
+		0ADD65A9261AFA5100951091 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,17 +36,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ADD65A0261AF5DB00951091 /* SDWebImageSwiftUI in Frameworks */,
+				0ADD658D261AE7CD00951091 /* Backend in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AC02CBE261B1C90005FCFD5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		0ADD656D261AE45200951091 = {
 			isa = PBXGroup;
 			children = (
+				0ADD6589261AE4B700951091 /* Backend */,
 				0ADD6578261AE45200951091 /* Sheeeesh */,
 				0ADD6577261AE45200951091 /* Products */,
+				0ADD658B261AE7CD00951091 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,8 +72,10 @@
 		0ADD6578261AE45200951091 /* Sheeeesh */ = {
 			isa = PBXGroup;
 			children = (
+				0ADD65A3261AFA3500951091 /* Utils */,
+				0ADD6590261AF3FE00951091 /* ViewModel */,
+				0ADD658F261AF3F300951091 /* View */,
 				0ADD6579261AE45200951091 /* SheeeeshApp.swift */,
-				0ADD657B261AE45200951091 /* ContentView.swift */,
 				0ADD657D261AE45400951091 /* Assets.xcassets */,
 				0ADD6582261AE45400951091 /* Info.plist */,
 				0ADD657F261AE45400951091 /* Preview Content */,
@@ -67,6 +89,56 @@
 				0ADD6580261AE45400951091 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0ADD658B261AE7CD00951091 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0ADD658F261AF3F300951091 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0AC02CBE261B1C90005FCFD5 /* Image */,
+				0ADD6592261AF44000951091 /* Home */,
+			);
+			name = View;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		0ADD6590261AF3FE00951091 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0ADD6598261AF46500951091 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0ADD6592261AF44000951091 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0ADD6593261AF44F00951091 /* HomeView.swift */,
+				0ADD659B261AF4CC00951091 /* HomeRow.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0ADD65A3261AFA3500951091 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0ADD65A8261AFA4700951091 /* Extension */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0ADD65A8261AFA4700951091 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0ADD65A9261AFA5100951091 /* Color+.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +157,10 @@
 			dependencies = (
 			);
 			name = Sheeeesh;
+			packageProductDependencies = (
+				0ADD658C261AE7CD00951091 /* Backend */,
+				0ADD659F261AF5DB00951091 /* SDWebImageSwiftUI */,
+			);
 			productName = Sheeeesh;
 			productReference = 0ADD6576261AE45200951091 /* Sheeeesh.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +188,9 @@
 				Base,
 			);
 			mainGroup = 0ADD656D261AE45200951091;
+			packageReferences = (
+				0ADD659E261AF5DB00951091 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 0ADD6577261AE45200951091 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +217,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0ADD657C261AE45200951091 /* ContentView.swift in Sources */,
+				0ADD6594261AF44F00951091 /* HomeView.swift in Sources */,
+				0ADD65AA261AFA5100951091 /* Color+.swift in Sources */,
+				0ADD659C261AF4CC00951091 /* HomeRow.swift in Sources */,
+				0ADD6599261AF46500951091 /* HomeViewModel.swift in Sources */,
 				0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,6 +410,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0ADD659E261AF5DB00951091 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0ADD658C261AE7CD00951091 /* Backend */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Backend;
+		};
+		0ADD659F261AF5DB00951091 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ADD659E261AF5DB00951091 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0ADD656E261AE45200951091 /* Project object */;
 }
