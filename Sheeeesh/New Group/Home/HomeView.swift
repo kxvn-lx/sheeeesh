@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject private var viewModel = HomeViewModel()
+    @State private var selectedURLString = ""
+    @State private var showSafariView = false
     
     var body: some View {
         NavigationView {
@@ -19,9 +21,15 @@ struct HomeView: View {
             case .idle:
                 List {
                     Section {
-                        ForEach(viewModel.memes, id: \.postLink) { HomeRow(meme: $0) }
+                        ForEach(viewModel.memes, id: \.postLink) { meme in
+                            HomeRow(meme: meme)
+                                .onTapGesture {
+                                    self.selectedURLString = meme.postLink
+                                    showSafariView = true
+                                }
+                        }
                     }
-                    
+
                     Section {
                         HStack {
                             Spacer()
@@ -36,6 +44,9 @@ struct HomeView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 .navigationTitle(Text("Sheeeesh"))
+                .sheet(isPresented: $showSafariView, content: {
+                    SafariView(urlString: self.$selectedURLString)
+                })
             }
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */; };
 		0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6579261AE45200951091 /* SheeeeshApp.swift */; };
 		0ADD657E261AE45400951091 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD657D261AE45400951091 /* Assets.xcassets */; };
 		0ADD6581261AE45400951091 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ADD6580261AE45400951091 /* Preview Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		0ADD6576261AE45200951091 /* Sheeeesh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sheeeesh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0ADD6579261AE45200951091 /* SheeeeshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheeeeshApp.swift; sourceTree = "<group>"; };
 		0ADD657D261AE45400951091 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,11 +46,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0AC02CBE261B1C90005FCFD5 /* Image */ = {
+		0AC02CC4261B1D7E005FCFD5 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */,
 			);
-			path = Image;
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		0ADD656D261AE45200951091 = {
@@ -101,7 +104,6 @@
 		0ADD658F261AF3F300951091 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0AC02CBE261B1C90005FCFD5 /* Image */,
 				0ADD6592261AF44000951091 /* Home */,
 			);
 			name = View;
@@ -128,6 +130,7 @@
 		0ADD65A3261AFA3500951091 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0AC02CC4261B1D7E005FCFD5 /* CustomView */,
 				0ADD65A8261AFA4700951091 /* Extension */,
 			);
 			path = Utils;
@@ -221,6 +224,7 @@
 				0ADD65AA261AFA5100951091 /* Color+.swift in Sources */,
 				0ADD659C261AF4CC00951091 /* HomeRow.swift in Sources */,
 				0ADD6599261AF46500951091 /* HomeViewModel.swift in Sources */,
+				0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */,
 				0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

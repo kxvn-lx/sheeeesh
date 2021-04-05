@@ -14,7 +14,7 @@ struct HomeRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            HStack(alignment: .firstTextBaseline) {
+            HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 10) {
                     Text(meme.title)
                         .fontWeight(.bold)
