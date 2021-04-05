@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 
 struct HomeRow: View {
     let meme: Meme
+    @State private var isLiked = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -46,6 +47,16 @@ struct HomeRow: View {
                 .scaledToFit()
                 .border(Color.secondarySystemBackground, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                 .cornerRadius(10)
+            
+            Button(action: {
+                TapticHelper.shared.heavyTaptic()
+                isLiked.toggle()
+            }, label: {
+                VStack {
+                    isLiked ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                }
+                .foregroundColor(.systemRed)
+            })
         }
         .padding([.top, .bottom])
     }
