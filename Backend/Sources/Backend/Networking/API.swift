@@ -15,6 +15,7 @@ public class API {
     static public let shared = API()
     static private let URL_PREFIX = "https://"
     static private let HOST = "reddit-meme-api.herokuapp.com"
+    public let FETCH_COUNT = 20
     
     private var session: URLSession
     
@@ -22,8 +23,8 @@ public class API {
         session = URLSession(configuration: Self.makeSessionConfiguration(token: nil))
     }
     
-    public func request(withImagesCount count: Int = 20, completion: @escaping (MemeCollection) -> Void)  {
-        let url = Self.makeURL().appendingPathComponent("\(count)")
+    public func request(completion: @escaping (MemeCollection) -> Void)  {
+        let url = Self.makeURL().appendingPathComponent("\(FETCH_COUNT)")
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else { fatalError() }

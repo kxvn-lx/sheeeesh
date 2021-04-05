@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import Backend
 
 struct HomeView: View {
     @ObservedObject private var viewModel = HomeViewModel()
     @State private var selectedURLString = ""
     @State private var showSafariView = false
+    @State private var paginationCount = -1
     
     var body: some View {
         NavigationView {
@@ -19,18 +21,19 @@ struct HomeView: View {
                 ProgressView()
                     .navigationTitle(Text("Sheeeesh"))
             case .idle:
-                List {
-                    Section {
-                        ForEach(viewModel.memes, id: \.postLink) { meme in
-                            HomeRow(meme: meme)
-                                .onTapGesture {
-                                    self.selectedURLString = meme.postLink
-                                    showSafariView = true
-                                }
+                ScrollView {
+                    ScrollViewReader { sp in
+                        LazyVStack {
+                            ForEach(viewModel.memes, id: \.self) { meme in
+                                HomeRow(meme: meme)
+                                    .onTapGesture {
+                                        self.selectedURLString = meme.postLink
+                                        showSafariView = true
+                                    }
+                                Divider()
+                            }
                         }
-                    }
-
-                    Section {
+                        
                         HStack {
                             Spacer()
                             Button(action: {
@@ -40,9 +43,16 @@ struct HomeView: View {
                             })
                             Spacer()
                         }
+                        .padding()
+                        .onAppear(perform: {
+                            paginationCount += 1
+                            if paginationCount > 0 {
+                                sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
+                            }
+                        })
                     }
                 }
-                .listStyle(InsetGroupedListStyle())
+                .padding([.leading, .trailing])
                 .navigationTitle(Text("Sheeeesh"))
                 .sheet(isPresented: $showSafariView, content: {
                     SafariView(urlString: self.$selectedURLString)

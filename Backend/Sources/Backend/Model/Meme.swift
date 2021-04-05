@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - MemeCollection
-public struct MemeCollection: Codable {
+public struct MemeCollection: Codable, Hashable {
     public let code, count: Int
     public let memes: [Meme]
 }
 
 // MARK: - Meme
-public struct Meme: Codable {
+public struct Meme: Codable, Hashable {
     public let postLink: String
     public let subreddit, title: String
     public let url: String

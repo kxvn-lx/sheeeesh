@@ -27,9 +27,21 @@ class HomeViewModel: ObservableObject {
         API.shared.request { [weak self] (memeCollection) in
             DispatchQueue.main.async {
                 self?.state = .idle
-                self?.memes = memeCollection.memes
+                self?.memes.appendDistinct(contentsOf: memeCollection.memes, where: { $0.url != $1.url })
             }
         }
     }
     
+}
+
+extension Array{
+    public mutating func appendDistinct<S>(contentsOf newElements: S, where condition:@escaping (Element, Element) -> Bool) where S : Sequence, Element == S.Element {
+      newElements.forEach { (item) in
+        if !(self.contains(where: { (selfItem) -> Bool in
+            return !condition(selfItem, item)
+        })) {
+            self.append(item)
+        }
+    }
+  }
 }
