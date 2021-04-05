@@ -11,13 +11,9 @@ struct EndView: View {
     var body: some View {
         VStack {
             Spacer()
-            Image("f-u")
-                .resizable()
-                .frame(width: 250, height: 250)
-            Text("Why r u still here? 😳")
-            Text("Made by @kevinlx_ on twitter")
-                .font(.caption)
-                .foregroundColor(.secondaryLabel)
+            Text("Sheeeeeeeesh")
+                .font(.caption2)
+                .foregroundColor(.tertiaryLabel)
         }
         .padding()
     }

@@ -9,7 +9,7 @@ import SwiftUI
 import Backend
 
 struct HomeView: View {
-    @ObservedObject private var viewModel = HomeViewModel()
+    @StateObject private var viewModel = HomeViewModel()
     @StateObject var scrollToModel = ScrollToModel()
     @State private var selectedURLString = ""
     @State private var showSafariView = false
@@ -34,6 +34,7 @@ struct HomeView: View {
                                 Divider()
                             }
                         }
+                        .padding([.leading, .trailing])
                         .onReceive(scrollToModel.$direction) { action in
                             guard !viewModel.memes.isEmpty else { return }
                             withAnimation {
@@ -49,6 +50,10 @@ struct HomeView: View {
                         }
                         
                         VStack {
+                            Text("Currently there are \(viewModel.memes.count) memes.")
+                                .font(.caption)
+                                .foregroundColor(.secondaryLabel)
+                            
                             HStack {
                                 Spacer()
                                 Button(action: {
@@ -63,15 +68,19 @@ struct HomeView: View {
                                 paginationCount += 1
                                 if paginationCount > 0 {
                                     sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
+                                } else {
+                                    sp.scrollTo(viewModel.memes.first!, anchor: .top)
                                 }
                             })
+                            
                             Spacer()
+                            
                             EndView()
-                                .frame(width: .infinity, height: 750)
+                                .frame(height: 750)
                         }
+                        .padding([.leading, .trailing])
                     }
                 }
-                .padding([.leading, .trailing])
                 .navigationTitle(Text("Sheeeesh"))
                 .sheet(isPresented: $showSafariView, content: {
                     SafariView(urlString: self.$selectedURLString)
@@ -88,6 +97,12 @@ struct HomeView: View {
                                 scrollToModel.direction = .end
                             }) {
                                 Label("To last post", systemImage: "chevron.down")
+                            }
+                            Button(action: {
+                                paginationCount = -1
+                                viewModel.reload()
+                            }) {
+                                Label("Reload fresh memes", systemImage: "arrow.clockwise")
                             }
                         } label: {
                             Image(systemName: "ellipsis.circle")

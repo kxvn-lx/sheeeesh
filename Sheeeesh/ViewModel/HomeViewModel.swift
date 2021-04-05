@@ -31,6 +31,17 @@ class HomeViewModel: ObservableObject {
             }
         }
     }
+    
+    func reload() {
+        state = .loading
+        
+        API.shared.request { [weak self] (memeCollection) in
+            DispatchQueue.main.async {
+                self?.state = .idle
+                self?.memes = memeCollection.memes
+            }
+        }
+    }
 }
 
 extension Array {
