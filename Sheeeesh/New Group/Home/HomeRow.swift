@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 
 struct HomeRow: View {
     let meme: Meme
-    @State private var isLiked = false
+    @State private var isSaved = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -55,10 +55,11 @@ struct HomeRow: View {
             HStack(spacing: 10) {
                 Button(action: {
                     TapticHelper.shared.heavyTaptic()
-                    isLiked.toggle()
+                    isSaved.toggle()
                 }, label: {
-                    VStack {
-                        isLiked ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                    HStack(spacing: 5) {
+                        isSaved ? Image(systemName: "heart.fill") : Image(systemName: "heart")
+                        Text(isSaved ? "Saved" : "Save")
                     }
                     .foregroundColor(.systemRed)
                 })

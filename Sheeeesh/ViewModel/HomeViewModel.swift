@@ -32,9 +32,10 @@ class HomeViewModel: ObservableObject {
         state = .loading
         
         API.shared.request(withEndpoint: endpoint) { [weak self] (memeCollection) in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.state = .idle
-                self?.memes.appendDistinct(contentsOf: memeCollection.memes, where: { $0.url != $1.url })
+                self.state = .idle
+                self.memes.appendDistinct(contentsOf: memeCollection.memes, where: { $0.url != $1.url })
             }
         }
     }
@@ -44,9 +45,10 @@ class HomeViewModel: ObservableObject {
         state = .loading
         
         API.shared.request(withEndpoint: endpoint) { [weak self] (memeCollection) in
+            guard let self = self else { return }
             DispatchQueue.main.async {
-                self?.state = .idle
-                self?.memes = memeCollection.memes
+                self.state = .idle
+                self.memes = memeCollection.memes
             }
         }
     }

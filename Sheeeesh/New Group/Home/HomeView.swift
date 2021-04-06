@@ -15,6 +15,7 @@ struct HomeView: View {
     @State private var showSafariView = false
     @State private var showSubredditSheet = false
     @State private var paginationCount = -1
+    @State private var prevMemesCount = 0
     
     var body: some View {
         NavigationView {
@@ -59,6 +60,7 @@ struct HomeView: View {
                                 Spacer()
                                 Button(action: {
                                     paginationCount += 1
+                                    prevMemesCount = viewModel.memes.count
                                     viewModel.fetch()
                                 }, label: {
                                     Text("Load More")
@@ -67,8 +69,8 @@ struct HomeView: View {
                             }
                             .padding()
                             .onAppear(perform: {
-                                if paginationCount > 0 {
-                                    sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
+                                if paginationCount > -1 {
+                                    sp.scrollTo(viewModel.memes[(prevMemesCount - 1)])
                                 } else {
                                     sp.scrollTo(viewModel.memes.first!, anchor: .top)
                                 }
