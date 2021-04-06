@@ -23,8 +23,8 @@ public class API {
         session = URLSession(configuration: Self.makeSessionConfiguration(token: nil))
     }
     
-    public func request(completion: @escaping (MemeCollection) -> Void)  {
-        let url = Self.makeURL().appendingPathComponent("\(FETCH_COUNT)")
+    public func request(withEndpoint endpoint: Endpoint = .random, completion: @escaping (MemeCollection) -> Void)  {
+        let url = endpoint == .random ? Self.makeURL().appendingPathComponent("\(FETCH_COUNT)") : Self.makeURL().appendingPathComponent(endpoint.rawValue).appendingPathComponent("\(FETCH_COUNT)")
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else { fatalError() }

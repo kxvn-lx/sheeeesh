@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A2E94E3261BD72600FFDFC3 /* SubredditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */; };
 		0A417AA1261B315100DF8146 /* ScrollToModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA0261B315100DF8146 /* ScrollToModel.swift */; };
 		0A417AA4261B34B100DF8146 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA3261B34B100DF8146 /* EndView.swift */; };
 		0A417AA7261B3B9C00DF8146 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA6261B3B9C00DF8146 /* TapticHelper.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditView.swift; sourceTree = "<group>"; };
 		0A417AA0261B315100DF8146 /* ScrollToModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToModel.swift; sourceTree = "<group>"; };
 		0A417AA3261B34B100DF8146 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		0A417AA6261B3B9C00DF8146 /* TapticHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				0ADD6592261AF44000951091 /* Home */,
 				0A417AA3261B34B100DF8146 /* EndView.swift */,
+				0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */,
 			);
 			name = View;
 			path = "New Group";
@@ -238,6 +241,7 @@
 				0A417AA7261B3B9C00DF8146 /* TapticHelper.swift in Sources */,
 				0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */,
 				0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */,
+				0A2E94E3261BD72600FFDFC3 /* SubredditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

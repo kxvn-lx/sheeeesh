@@ -16,6 +16,11 @@ class HomeViewModel: ObservableObject {
 
     @Published private(set) var state = State.loading
     @Published private(set) var memes = [Meme]()
+    @Published var endpoint: Endpoint = .random {
+        didSet {
+            reload()
+        }
+    }
     
     init() {
         fetch()
@@ -24,7 +29,7 @@ class HomeViewModel: ObservableObject {
     func fetch() {
         state = .loading
         
-        API.shared.request { [weak self] (memeCollection) in
+        API.shared.request(withEndpoint: endpoint) { [weak self] (memeCollection) in
             DispatchQueue.main.async {
                 self?.state = .idle
                 self?.memes.appendDistinct(contentsOf: memeCollection.memes, where: { $0.url != $1.url })
@@ -35,7 +40,7 @@ class HomeViewModel: ObservableObject {
     func reload() {
         state = .loading
         
-        API.shared.request { [weak self] (memeCollection) in
+        API.shared.request(withEndpoint: endpoint) { [weak self] (memeCollection) in
             DispatchQueue.main.async {
                 self?.state = .idle
                 self?.memes = memeCollection.memes

@@ -13,6 +13,7 @@ struct HomeView: View {
     @StateObject var scrollToModel = ScrollToModel()
     @State private var selectedURLString = ""
     @State private var showSafariView = false
+    @State private var showSubredditSheet = false
     @State private var paginationCount = -1
     
     var body: some View {
@@ -57,6 +58,7 @@ struct HomeView: View {
                             HStack {
                                 Spacer()
                                 Button(action: {
+                                    paginationCount += 1
                                     viewModel.fetch()
                                 }, label: {
                                     Text("Load More")
@@ -65,7 +67,6 @@ struct HomeView: View {
                             }
                             .padding()
                             .onAppear(perform: {
-                                paginationCount += 1
                                 if paginationCount > 0 {
                                     sp.scrollTo(viewModel.memes[(API.shared.FETCH_COUNT * paginationCount) - 2])
                                 } else {
@@ -85,27 +86,38 @@ struct HomeView: View {
                 .sheet(isPresented: $showSafariView, content: {
                     SafariView(urlString: self.$selectedURLString)
                 })
+                .sheet(isPresented: $showSubredditSheet, content: {
+                    SubredditView(selectedEndpoint: $viewModel.endpoint)
+                })
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Menu {
-                            Button(action: {
-                                scrollToModel.direction = .top
-                            }) {
-                                Label("To first post", systemImage: "chevron.up")
+                        HStack(spacing: 10) {
+                            Menu {
+                                Button(action: {
+                                    scrollToModel.direction = .top
+                                }) {
+                                    Label("To first post", systemImage: "chevron.up")
+                                }
+                                Button(action: {
+                                    scrollToModel.direction = .end
+                                }) {
+                                    Label("To last post", systemImage: "chevron.down")
+                                }
+                                Button(action: {
+                                    paginationCount = -1
+                                    viewModel.reload()
+                                }) {
+                                    Label("Reload fresh memes", systemImage: "arrow.clockwise")
+                                }
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
                             }
+                            
                             Button(action: {
-                                scrollToModel.direction = .end
+                                showSubredditSheet = true
                             }) {
-                                Label("To last post", systemImage: "chevron.down")
+                                Text("/r")
                             }
-                            Button(action: {
-                                paginationCount = -1
-                                viewModel.reload()
-                            }) {
-                                Label("Reload fresh memes", systemImage: "arrow.clockwise")
-                            }
-                        } label: {
-                            Image(systemName: "ellipsis.circle")
                         }
                     }
                 }
