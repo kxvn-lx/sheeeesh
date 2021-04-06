@@ -18,7 +18,7 @@ struct SavedMemesView: View {
             ScrollView {
                 ScrollViewReader { sp in
                     LazyVStack {
-                        ForEach(viewModel.savedMemes) { meme in
+                        ForEach(viewModel.savedMemes, id:\.self) { meme in
                             HomeRow(meme: meme)
                                 .environmentObject(viewModel)
                                 .onTapGesture {
@@ -51,7 +51,7 @@ struct SavedMemesView: View {
                     .padding([.leading, .trailing])
                 }
             }
-            .navigationTitle(Text("Sheeeesh"))
+            .navigationTitle(Text("Saved"))
             .sheet(isPresented: $showSafariView, content: {
                 SafariView(urlString: self.$selectedURLString)
             })

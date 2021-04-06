@@ -11,7 +11,6 @@
 		0A0D2ED3261C1A1B004E8CEC /* ActiveSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D2ED2261C1A1B004E8CEC /* ActiveSheet.swift */; };
 		0A2E94E3261BD72600FFDFC3 /* SubredditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */; };
 		0A417AA1261B315100DF8146 /* ScrollToModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA0261B315100DF8146 /* ScrollToModel.swift */; };
-		0A417AA4261B34B100DF8146 /* EndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA3261B34B100DF8146 /* EndView.swift */; };
 		0A417AA7261B3B9C00DF8146 /* TapticHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A417AA6261B3B9C00DF8146 /* TapticHelper.swift */; };
 		0AC02CC6261B1D8C005FCFD5 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */; };
 		0ADD657A261AE45200951091 /* SheeeeshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD6579261AE45200951091 /* SheeeeshApp.swift */; };
@@ -30,7 +29,6 @@
 		0A0D2ED2261C1A1B004E8CEC /* ActiveSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveSheet.swift; sourceTree = "<group>"; };
 		0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubredditView.swift; sourceTree = "<group>"; };
 		0A417AA0261B315100DF8146 /* ScrollToModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToModel.swift; sourceTree = "<group>"; };
-		0A417AA3261B34B100DF8146 /* EndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndView.swift; sourceTree = "<group>"; };
 		0A417AA6261B3B9C00DF8146 /* TapticHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapticHelper.swift; sourceTree = "<group>"; };
 		0AC02CC5261B1D8C005FCFD5 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		0ADD6576261AE45200951091 /* Sheeeesh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sheeeesh.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +124,6 @@
 			children = (
 				0A0D2EC9261C1648004E8CEC /* Saved */,
 				0ADD6592261AF44000951091 /* Home */,
-				0A417AA3261B34B100DF8146 /* EndView.swift */,
 				0A2E94E2261BD72600FFDFC3 /* SubredditView.swift */,
 			);
 			name = View;
@@ -248,7 +245,6 @@
 			files = (
 				0ADD6594261AF44F00951091 /* HomeView.swift in Sources */,
 				0ADD65AA261AFA5100951091 /* Color+.swift in Sources */,
-				0A417AA4261B34B100DF8146 /* EndView.swift in Sources */,
 				0A0D2ECB261C1654004E8CEC /* SavedMemesView.swift in Sources */,
 				0ADD659C261AF4CC00951091 /* HomeRow.swift in Sources */,
 				0A0D2ED3261C1A1B004E8CEC /* ActiveSheet.swift in Sources */,

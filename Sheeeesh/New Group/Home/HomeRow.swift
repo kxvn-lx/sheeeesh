@@ -71,7 +71,9 @@ struct HomeRow: View {
                 }, label: {
                     Image(systemName: "square.and.arrow.down")
                 })
+                .foregroundColor(.accentColor)
             }
+            .buttonStyle(PlainButtonStyle())
         }
         .padding([.top, .bottom])
         .onAppear(perform: {

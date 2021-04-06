@@ -15,18 +15,19 @@ struct HomeView: View {
     @State private var activeSheet: ActiveSheet?
     @State private var paginationCount = -1
     @State private var prevMemesCount = 0
+    @State private var shouldAutoScroll = false
     
     var body: some View {
         NavigationView {
             switch viewModel.state {
             case .loading:
                 ProgressView()
-                    .navigationTitle(Text("Sheeeesh"))
+                    .navigationTitle(Text("For You"))
             case .idle:
                 ScrollView {
                     ScrollViewReader { sp in
                         LazyVStack {
-                            ForEach(viewModel.memes) { meme in
+                            ForEach(viewModel.memes, id:\.self) { meme in
                                 HomeRow(meme: meme)
                                     .environmentObject(viewModel)
                                     .onTapGesture {
@@ -61,6 +62,7 @@ struct HomeView: View {
                                     paginationCount += 1
                                     prevMemesCount = viewModel.memes.count
                                     viewModel.fetch()
+                                    shouldAutoScroll = true
                                 }, label: {
                                     Text("Load More")
                                 })
@@ -68,17 +70,23 @@ struct HomeView: View {
                             }
                             .padding()
                             .onAppear(perform: {
-                                if paginationCount > -1 {
-                                    sp.scrollTo(viewModel.memes[(prevMemesCount - 1)])
-                                } else {
-                                    sp.scrollTo(viewModel.memes.first!, anchor: .top)
+                                if shouldAutoScroll {
+                                    withAnimation {
+                                        if paginationCount > -1 {
+                                            sp.scrollTo(viewModel.memes[(prevMemesCount - 1)])
+                                        } else {
+                                            sp.scrollTo(viewModel.memes.first!, anchor: .top)
+                                        }
+                                    }
+                                    
+                                    shouldAutoScroll = false
                                 }
                             })
                         }
                         .padding([.leading, .trailing])
                     }
                 }
-                .navigationTitle(Text("Sheeeesh"))
+                .navigationTitle(Text("For You"))
                 .sheet(item: $activeSheet) { item in
                     switch item {
                     case .safariView:
@@ -109,8 +117,6 @@ struct HomeView: View {
                         } label: {
                             Image(systemName: "ellipsis.circle")
                         }
-                        
-                        Spacer()
                         
                         Button(action: {
                             activeSheet = .subredditView
