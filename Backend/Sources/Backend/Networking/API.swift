@@ -24,7 +24,13 @@ public class API {
     }
     
     public func request(withEndpoint endpoint: Endpoint = .random, completion: @escaping (MemeCollection) -> Void)  {
-        let url = endpoint == .random ? Self.makeURL().appendingPathComponent("\(FETCH_COUNT)") : Self.makeURL().appendingPathComponent(endpoint.rawValue).appendingPathComponent("\(FETCH_COUNT)")
+        let url: URL
+        
+        if endpoint == .random {
+            url = Self.makeURL().appendingPathComponent("\(FETCH_COUNT)")
+        } else {
+            url = Self.makeURL().appendingPathComponent(endpoint.rawValue).appendingPathComponent("\(FETCH_COUNT)")
+        }
         
         session.dataTask(with: url) { (data, _, error) in
             guard let data = data else { fatalError() }

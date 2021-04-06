@@ -49,8 +49,8 @@ struct HomeRow: View {
                 .indicator(.activity)
                 .transition(.fade(duration: 0.5))
                 .scaledToFit()
-                .border(Color.secondarySystemBackground, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                .cornerRadius(10)
+                .border(Color.secondarySystemBackground, width: 1)
+                .cornerRadius(15)
             
             HStack(spacing: 10) {
                 Button(action: {

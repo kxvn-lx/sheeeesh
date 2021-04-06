@@ -26,6 +26,8 @@ class HomeViewModel: ObservableObject {
         fetch()
     }
     
+    
+    /// Fetch new memes, and append it to the memes array.
     func fetch() {
         state = .loading
         
@@ -37,6 +39,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    /// Fetch new memes and replace it to the memes array
     func reload() {
         state = .loading
         
@@ -47,6 +50,9 @@ class HomeViewModel: ObservableObject {
             }
         }
     }
+    
+    // MARK: - Private methods
+    
 }
 
 extension Array {
