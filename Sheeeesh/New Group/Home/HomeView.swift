@@ -9,11 +9,10 @@ import SwiftUI
 import Backend
 
 struct HomeView: View {
-    @StateObject private var viewModel = HomeViewModel()
+    @EnvironmentObject private var viewModel: HomeViewModel
     @StateObject var scrollToModel = ScrollToModel()
     @State private var selectedURLString = ""
-    @State private var showSafariView = false
-    @State private var showSubredditSheet = false
+    @State private var activeSheet: ActiveSheet?
     @State private var paginationCount = -1
     @State private var prevMemesCount = 0
     
@@ -27,11 +26,12 @@ struct HomeView: View {
                 ScrollView {
                     ScrollViewReader { sp in
                         LazyVStack {
-                            ForEach(viewModel.memes, id: \.self) { meme in
-                                HomeRow(meme: meme, viewModel: self.viewModel)
+                            ForEach(viewModel.memes) { meme in
+                                HomeRow(meme: meme)
+                                    .environmentObject(viewModel)
                                     .onTapGesture {
                                         self.selectedURLString = meme.postLink
-                                        showSafariView = true
+                                        activeSheet = .safariView
                                     }
                             }
                         }
@@ -74,51 +74,48 @@ struct HomeView: View {
                                     sp.scrollTo(viewModel.memes.first!, anchor: .top)
                                 }
                             })
-                            
-                            Spacer()
-                            
-                            EndView()
-                                .frame(height: 750)
                         }
                         .padding([.leading, .trailing])
                     }
                 }
                 .navigationTitle(Text("Sheeeesh"))
-                .sheet(isPresented: $showSafariView, content: {
-                    SafariView(urlString: self.$selectedURLString)
-                })
-                .sheet(isPresented: $showSubredditSheet, content: {
-                    SubredditView(selectedEndpoint: $viewModel.endpoint)
-                })
+                .sheet(item: $activeSheet) { item in
+                    switch item {
+                    case .safariView:
+                        SafariView(urlString: self.$selectedURLString)
+                    case .subredditView:
+                        SubredditView(selectedEndpoint: $viewModel.endpoint)
+                    }
+                }
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        HStack(spacing: 10) {
-                            Menu {
-                                Button(action: {
-                                    scrollToModel.direction = .top
-                                }) {
-                                    Label("To first post", systemImage: "chevron.up")
-                                }
-                                Button(action: {
-                                    scrollToModel.direction = .end
-                                }) {
-                                    Label("To last post", systemImage: "chevron.down")
-                                }
-                                Button(action: {
-                                    paginationCount = -1
-                                    viewModel.reload()
-                                }) {
-                                    Label("Reload fresh memes", systemImage: "arrow.clockwise")
-                                }
-                            } label: {
-                                Image(systemName: "ellipsis.circle")
-                            }
-                            
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Menu {
                             Button(action: {
-                                showSubredditSheet = true
+                                scrollToModel.direction = .top
                             }) {
-                                Text("/r")
+                                Label("To first post", systemImage: "chevron.up")
                             }
+                            Button(action: {
+                                scrollToModel.direction = .end
+                            }) {
+                                Label("To last post", systemImage: "chevron.down")
+                            }
+                            Button(action: {
+                                paginationCount = -1
+                                viewModel.reload()
+                            }) {
+                                Label("Reload fresh memes", systemImage: "arrow.clockwise")
+                            }
+                        } label: {
+                            Image(systemName: "ellipsis.circle")
+                        }
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            activeSheet = .subredditView
+                        }) {
+                            Text("/r")
                         }
                     }
                 }

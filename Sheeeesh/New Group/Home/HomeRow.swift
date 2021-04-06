@@ -13,7 +13,7 @@ import SDWebImageSwiftUI
 struct HomeRow: View {
     let meme: Meme
     @State private var isSaved = false
-    let viewModel: HomeViewModel
+    @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -104,7 +104,7 @@ extension HomeRow {
 
 struct HomeRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeRow(meme: Meme.static_meme, viewModel: HomeViewModel())
+        HomeRow(meme: Meme.static_meme)
             .padding()
     }
 }

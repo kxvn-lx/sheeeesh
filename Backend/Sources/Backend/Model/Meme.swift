@@ -14,7 +14,8 @@ public struct MemeCollection: Codable, Hashable {
 }
 
 // MARK: - Meme
-public struct Meme: Codable, Hashable {
+public struct Meme: Codable, Hashable, Equatable, Identifiable {
+    public let id = UUID()
     public let postLink: String
     public let subreddit, title: String
     public let url: String
@@ -48,4 +49,8 @@ public struct Meme: Codable, Hashable {
             "https://external-preview.redd.it/3CtEn7AawS2_V02d23JO4a1Jgm_b1_jPf0-4rnBxs8k.jpg?width=960&crop=smart&auto=webp&s=14cbd790c520a3ad439108a0d993065c9fd9236e",
             "https://external-preview.redd.it/3CtEn7AawS2_V02d23JO4a1Jgm_b1_jPf0-4rnBxs8k.jpg?width=1080&crop=smart&auto=webp&s=dece46f89bc302cb67bb1939f1e990dbd990748d"
         ])
+    
+    public static func == (lhs: Meme, rhs: Meme) -> Bool {
+        lhs.id == rhs.id
+    }
 }

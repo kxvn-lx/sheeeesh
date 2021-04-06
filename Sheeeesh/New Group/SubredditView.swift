@@ -18,7 +18,7 @@ struct SubredditView: View {
                 Section {
                     HStack {
                         Spacer()
-                        VStack(spacing: 10) {
+                        VStack(alignment: .center, spacing: 10) {
                             Text("/r")
                                 .fontWeight(.bold)
                                 .font(.title)
