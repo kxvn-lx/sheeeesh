@@ -16,11 +16,14 @@ class HomeViewModel: ObservableObject {
 
     @Published private(set) var state = State.loading
     @Published private(set) var memes = [Meme]()
+    @Published private(set) var savedMemes = [Meme]()
     @Published var endpoint: Endpoint = .random {
         didSet {
             reload()
         }
     }
+    
+    private var saveEngine = SaveEngine()
     
     init() {
         fetch()
@@ -53,7 +56,10 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Private methods
+    func save(meme: Meme) {
+        saveEngine.save(meme)
+        savedMemes = saveEngine.savedMemes
+    }
     
 }
 

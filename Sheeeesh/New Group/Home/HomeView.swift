@@ -28,12 +28,11 @@ struct HomeView: View {
                     ScrollViewReader { sp in
                         LazyVStack {
                             ForEach(viewModel.memes, id: \.self) { meme in
-                                HomeRow(meme: meme)
+                                HomeRow(meme: meme, viewModel: self.viewModel)
                                     .onTapGesture {
                                         self.selectedURLString = meme.postLink
                                         showSafariView = true
                                     }
-                                Divider()
                             }
                         }
                         .padding([.leading, .trailing])

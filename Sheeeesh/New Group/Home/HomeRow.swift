@@ -13,6 +13,7 @@ import SDWebImageSwiftUI
 struct HomeRow: View {
     let meme: Meme
     @State private var isSaved = false
+    let viewModel: HomeViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -24,9 +25,6 @@ struct HomeRow: View {
                     Text("r/\(meme.subreddit)")
                         .font(.caption2)
                         .foregroundColor(Color.secondaryLabel)
-                }
-                .onTapGesture {
-                    print(meme)
                 }
                 
                 Spacer()
@@ -56,6 +54,8 @@ struct HomeRow: View {
                 Button(action: {
                     TapticHelper.shared.heavyTaptic()
                     isSaved.toggle()
+                    
+                    viewModel.save(meme: meme)
                 }, label: {
                     HStack(spacing: 5) {
                         isSaved ? Image(systemName: "heart.fill") : Image(systemName: "heart")
@@ -74,6 +74,9 @@ struct HomeRow: View {
             }
         }
         .padding([.top, .bottom])
+        .onAppear(perform: {
+            isSaved = viewModel.savedMemes.contains(meme)
+        })
     }
 }
 
@@ -101,7 +104,7 @@ extension HomeRow {
 
 struct HomeRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeRow(meme: Meme.static_meme)
+        HomeRow(meme: Meme.static_meme, viewModel: HomeViewModel())
             .padding()
     }
 }
