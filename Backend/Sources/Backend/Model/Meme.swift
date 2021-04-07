@@ -89,6 +89,6 @@ public struct Meme: Codable, Hashable, Equatable, Identifiable {
     ]
     
     public static func == (lhs: Meme, rhs: Meme) -> Bool {
-        lhs.id == rhs.id
+        return lhs.title == rhs.title && lhs.author == rhs.author
     }
 }
