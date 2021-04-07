@@ -13,7 +13,9 @@ import SDWebImageSwiftUI
 struct HomeRow: View {
     let meme: Meme
     @State private var isSaved = false
+    @State private var showImage = true
     @EnvironmentObject private var viewModel: HomeViewModel
+    private let forbiddenWords = ["gallery", "v.redd.it", "gifv", "comments"]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -25,6 +27,9 @@ struct HomeRow: View {
                     Text("r/\(meme.subreddit)")
                         .font(.caption2)
                         .foregroundColor(Color.secondaryLabel)
+                }
+                .onTapGesture {
+                    print(meme.url)
                 }
                 
                 Spacer()
@@ -39,16 +44,29 @@ struct HomeRow: View {
                 .font(.caption)
             }
             
-            WebImage(url: URL(string: meme.url))
-                .resizable()
-                .placeholder {
-                    Rectangle().foregroundColor(.systemGray6)
+            if showImage {
+                WebImage(url: URL(string: meme.url))
+                    .resizable()
+                    .placeholder {
+                        Rectangle().foregroundColor(.systemGray6)
+                    }
+                    .onFailure(perform: { (error) in
+                        showImage = false
+                    })
+                    .indicator(.activity)
+                    .transition(.fade(duration: 0.5))
+                    .scaledToFit()
+                    .border(Color.secondarySystemBackground, width: 1)
+                    .cornerRadius(15)
+            } else {
+                if let memeType = viewModel.getMemeType(from: meme) {
+                    Text("This is \(memeType) post. Tap to see it on reddit.")
+                        .foregroundColor(.secondaryLabel)
+                } else {
+                    Text("Unable to display the media. Tap to see it on reddit.")
+                        .foregroundColor(.secondaryLabel)
                 }
-                .indicator(.activity)
-                .transition(.fade(duration: 0.5))
-                .scaledToFit()
-                .border(Color.secondarySystemBackground, width: 1)
-                .cornerRadius(15)
+            }
             
             HStack(spacing: 10) {
                 Button(action: {

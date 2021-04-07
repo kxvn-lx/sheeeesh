@@ -11,46 +11,21 @@ import SDWebImageSwiftUI
 
 struct SavedMemesRow: View {
     let meme: Meme
-    @State private var isSaved = false
-    @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            GeometryReader { proxy in
-                WebImage(url: URL(string: meme.url))
-                    .resizable()
-                    .placeholder {
-                        Rectangle().foregroundColor(.systemGray6)
-                    }
-                    .indicator(.activity)
-                    .transition(.fade(duration: 0.5))
-                    .scaledToFill()
-                    .border(Color.secondarySystemBackground, width: 1)
-                    .cornerRadius(15)
-                    .frame(width: proxy.size.width, height: proxy.size.height)
-            }
-            .clipped()
-            .aspectRatio(1, contentMode: .fit)
-            .cornerRadius(15)
-            
-            HStack(spacing: 10) {
-                Button(action: {
-                    TapticHelper.shared.heavyTaptic()
-                    isSaved.toggle()
-                    viewModel.save(meme: meme)
-                }, label: {
-                    HStack(spacing: 5) {
-                        isSaved ? Image(systemName: "heart.fill") : Image(systemName: "heart")
-                    }
-                    .foregroundColor(.systemRed)
-                })
-            }
-            .buttonStyle(PlainButtonStyle())
+        GeometryReader { proxy in
+            WebImage(url: URL(string: meme.url))
+                .resizable()
+                .placeholder {
+                    Rectangle().foregroundColor(.systemGray6)
+                }
+                .indicator(.activity)
+                .transition(.fade(duration: 0.5))
+                .scaledToFill()
+                .frame(width: proxy.size.width, height: proxy.size.height)
         }
-        .padding([.top, .bottom])
-        .onAppear(perform: {
-            isSaved = viewModel.savedMemes.contains(meme)
-        })
+        .clipped()
+        .aspectRatio(1, contentMode: .fit)
     }
 }
 

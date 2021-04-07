@@ -17,9 +17,12 @@ struct SavedMemesView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 10) {
-                QGrid(viewModel.savedMemes, columns: 2) { meme in
+                QGrid(
+                    viewModel.savedMemes,
+                    columns: 3,
+                    vSpacing: 0,
+                    hSpacing: 0) { meme in
                     SavedMemesRow(meme: meme)
-                        .environmentObject(viewModel)
                         .onTapGesture {
                             selectedMeme = meme
                             shouldPresentDetaiLView = true

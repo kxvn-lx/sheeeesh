@@ -60,6 +60,20 @@ class HomeViewModel: ObservableObject {
         saveEngine.save(meme)
         savedMemes = saveEngine.savedMemes.reversed()
     }
+    
+    func getMemeType(from meme: Meme) -> String? {
+        if meme.url.contains("gallery") {
+            return "a gallery"
+        } else if meme.url.contains("v.redd.it") {
+            return "a video"
+        } else if meme.url.contains("gifv") {
+            return "an unsupported gif"
+        } else if meme.url.contains("comments") {
+            return "a comment"
+        }
+        
+        return nil
+    }
 }
 
 extension Array {
