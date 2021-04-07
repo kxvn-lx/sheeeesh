@@ -42,7 +42,7 @@ struct HomeRow: View {
             WebImage(url: URL(string: meme.url))
                 .resizable()
                 .placeholder {
-                    Rectangle().foregroundColor(.gray)
+                    Rectangle().foregroundColor(.systemGray6)
                 }
                 .indicator(.activity)
                 .transition(.fade(duration: 0.5))

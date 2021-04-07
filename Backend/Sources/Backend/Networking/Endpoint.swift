@@ -10,4 +10,6 @@ import Foundation
 public enum Endpoint: String, CaseIterable {
     case trees
     case random
+    case dankmemes
+    case memes
 }

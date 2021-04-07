@@ -22,7 +22,7 @@ struct HomeView: View {
             switch viewModel.state {
             case .loading:
                 ProgressView()
-                    .navigationTitle(Text("For You"))
+                    .navigationTitle(Text("Feed"))
             case .idle:
                 ScrollView {
                     ScrollViewReader { sp in
@@ -52,6 +52,7 @@ struct HomeView: View {
                         }
                         
                         VStack {
+                            Divider()
                             Text("Currently there are \(viewModel.memes.count) memes.")
                                 .font(.caption)
                                 .foregroundColor(.secondaryLabel)
@@ -65,6 +66,8 @@ struct HomeView: View {
                                     shouldAutoScroll = true
                                 }, label: {
                                     Text("Load More")
+                                        .font(.headline)
+                                        .foregroundColor(.accentColor)
                                 })
                                 Spacer()
                             }
@@ -86,7 +89,7 @@ struct HomeView: View {
                         .padding([.leading, .trailing])
                     }
                 }
-                .navigationTitle(Text("For You"))
+                .navigationTitle(Text("Feed"))
                 .sheet(item: $activeSheet) { item in
                     switch item {
                     case .safariView:

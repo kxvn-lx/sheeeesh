@@ -17,7 +17,7 @@ struct SheeeeshApp: App {
                 HomeView()
                     .environmentObject(homeViewModel)
                     .tabItem {
-                        Label("For You", systemImage: "heart.text.square")
+                        Label("Feed", systemImage: "heart.text.square")
                     }
                 SavedMemesView()
                     .environmentObject(homeViewModel)

@@ -27,7 +27,7 @@ class HomeViewModel: ObservableObject {
     
     init() {
         fetch()
-        savedMemes = saveEngine.savedMemes
+        savedMemes = saveEngine.savedMemes.reversed()
     }
     
     /// Fetch new memes, and append it to the memes array.
@@ -58,7 +58,7 @@ class HomeViewModel: ObservableObject {
     
     func save(meme: Meme) {
         saveEngine.save(meme)
-        savedMemes = saveEngine.savedMemes
+        savedMemes = saveEngine.savedMemes.reversed()
     }
 }
 

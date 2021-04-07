@@ -33,6 +33,9 @@ public class API {
         }
         
         session.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
             guard let data = data else { fatalError() }
             if error != nil { fatalError(error!.localizedDescription) }
             

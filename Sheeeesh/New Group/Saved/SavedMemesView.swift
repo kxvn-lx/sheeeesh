@@ -6,73 +6,37 @@
 //
 
 import SwiftUI
+import QGrid
+import Backend
 
 struct SavedMemesView: View {
     @EnvironmentObject private var viewModel: HomeViewModel
-    @StateObject var scrollToModel = ScrollToModel()
-    @State private var selectedURLString = ""
-    @State private var showSafariView = false
+    @State private var shouldPresentDetaiLView = false
+    @State private var selectedMeme: Meme = .static_meme
     
     var body: some View {
         NavigationView {
-            ScrollView {
-                ScrollViewReader { sp in
-                    LazyVStack {
-                        ForEach(viewModel.savedMemes, id:\.self) { meme in
-                            HomeRow(meme: meme)
-                                .environmentObject(viewModel)
-                                .onTapGesture {
-                                    self.selectedURLString = meme.postLink
-                                    showSafariView = true
-                                }
+            VStack(spacing: 10) {
+                QGrid(viewModel.savedMemes, columns: 2) { meme in
+                    SavedMemesRow(meme: meme)
+                        .environmentObject(viewModel)
+                        .onTapGesture {
+                            selectedMeme = meme
+                            shouldPresentDetaiLView = true
                         }
-                    }
-                    .padding([.leading, .trailing])
-                    .onReceive(scrollToModel.$direction) { action in
-                        guard !viewModel.memes.isEmpty else { return }
-                        withAnimation {
-                            switch action {
-                            case .top:
-                                sp.scrollTo(viewModel.memes.first!, anchor: .top)
-                            case .end:
-                                sp.scrollTo(viewModel.memes.last!, anchor: .bottom)
-                            default:
-                                return
-                            }
-                        }
-                    }
-                    
-                    VStack {
-                        Text("Currently there are \(viewModel.savedMemes.count) saved \(viewModel.savedMemes.count == 1 ? "meme" : "memes").")
-                            .font(.caption)
-                            .foregroundColor(.secondaryLabel)
-                            .padding()
-                    }
-                    .padding([.leading, .trailing])
+                }
+                
+                VStack {
+                    Text("Currently there are \(viewModel.savedMemes.count) saved \(viewModel.savedMemes.count == 1 ? "meme" : "memes").")
+                        .font(.caption)
+                        .foregroundColor(.secondaryLabel)
+                        .padding()
                 }
             }
             .navigationTitle(Text("Saved"))
-            .sheet(isPresented: $showSafariView, content: {
-                SafariView(urlString: self.$selectedURLString)
+            .sheet(isPresented: $shouldPresentDetaiLView, content: {
+                DetailView(meme: $selectedMeme)
             })
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Menu {
-                        Button(action: {
-                            scrollToModel.direction = .top
-                        }) {
-                            Label("To first post", systemImage: "chevron.up")
-                        }
-                        Button(action: {
-                            scrollToModel.direction = .end
-                        }) {
-                            Label("To last post", systemImage: "chevron.down")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                    }
-                }
-            }
         }
     }
 }
